@@ -14,7 +14,7 @@ const fastify = require("fastify")({
 const smsService = new SmsService({})
 const templatesService = new TemplatesService({})
 
-Routes({fastify, emailService, smsService, templatesService})
+Routes({fastify, smsService, templatesService})
 
 fastify.register(require("fastify-healthcheck"))
 

@@ -18,7 +18,7 @@ Routes({fastify, smsService, templatesService})
 
 fastify.register(require("fastify-healthcheck"))
 
-fastify.listen(4500, (err) => {
+fastify.listen(4500, "0.0.0.0", (err) => {
     logger.info("Server started on port 4500")
     if (err) throw err
 })

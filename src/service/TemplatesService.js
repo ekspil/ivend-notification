@@ -5,7 +5,7 @@ const ValidationError = require("../errors/ValidationError")
 class TemplatesService {
     constructor() {
         this.templates = {
-            1: {
+            "REGISTRATION_SMS": {
                 type: TemplateType.SMS,
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`

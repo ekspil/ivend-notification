@@ -1,4 +1,5 @@
 const fetch = require("node-fetch")
+const logger = require("../utils/logger")
 const MegafonAuthError = require("../errors/MegafonAuthError")
 const MegafonUnknownError = require("../errors/MegafonUnknownError")
 
@@ -31,6 +32,7 @@ class SmsService {
                 const json = await response.json()
 
                 if (json && json.result && json.result.status && json.result.status.code === 0) {
+                    logger.info(`Sent SMS to ${recipent} with content: ${text}`)
                     return json
                 }
 

@@ -5,15 +5,10 @@ const TemplateType = require("../enum/TemplateType")
 const TemplateNotFound = require("../errors/TemplateNotFound")
 const MegafonAuthError = require("../errors/MegafonAuthError")
 
-function Routes({fastify, smsService, templatesService}) {
+function Routes({fastify, smsService, emailService, templatesService}) {
 
     const sendTemplate = async (request, reply) => {
         const {templateId} = request.params
-        const {code, phone} = request.body
-
-        if (!code) {
-            throw new ValidationError()
-        }
 
         const template = await templatesService.getTemplateById(templateId)
 
@@ -21,14 +16,38 @@ function Routes({fastify, smsService, templatesService}) {
             throw new TemplateNotFound()
         }
 
-        const content = await templatesService.renderTemplate(templateId, {code})
+        const content = await templatesService.renderTemplate(templateId, request.body)
 
         if (template.type === TemplateType.SMS) {
+            const {phone} = request.body
+
             if (!validationUtils.validatePhoneNumber(phone)) {
                 throw new ValidationError()
             }
 
             await smsService.sendSms(phone, content)
+
+            return reply.type("application/json").code(200).send({sent: true})
+        }
+
+        if (template.type === TemplateType.EMAIL) {
+            const {email} = request.body
+
+            if (!validationUtils.validateEmail(email)) {
+                throw new ValidationError()
+            }
+
+            let subject
+
+            switch (template.type) {
+                case "REGISTRATION_EMAIL":
+                    subject = `Благодарим за регистрацию`
+                    break
+                default:
+                    subject = `Сообщение от iVend`
+            }
+
+            await emailService.sendEmail(email, subject, content)
 
             return reply.type("application/json").code(200).send({sent: true})
         }

@@ -9,6 +9,11 @@ class TemplatesService {
                 type: TemplateType.SMS,
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`
+            },
+            "REGISTRATION_EMAIL": {
+                type: TemplateType.EMAIL,
+                replacements: ["token"],
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=email_confirmed">Reg</a></div>`
             }
         }
 

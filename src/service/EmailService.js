@@ -8,7 +8,7 @@ class EmailService {
             secure: false,
             tls: {rejectUnauthorized: false},
             host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT,
+            port: Number(process.env.SMTP_PORT),
         })
 
         this.sendEmail = this.sendEmail.bind(this)

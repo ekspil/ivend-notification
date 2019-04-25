@@ -58,14 +58,17 @@ function Routes({fastify, smsService, emailService, templatesService}) {
 
     fastify.setErrorHandler((error, request, reply) => {
         if (error instanceof ValidationError) {
+            logger.warning(`ValidationError. RequestBody: ${JSON.stringify(request.body)}`)
             return reply.type("application/json").code(400).send()
         }
 
         if (error instanceof TemplateNotFound) {
+            logger.warning(`Template not found`)
             return reply.type("application/json").code(404).send({sent: false})
         }
 
         if (error instanceof MegafonAuthError) {
+            logger.warning(`MegafonAuthError. RequestBody: ${JSON.stringify(request.body)}`)
             return reply.type("application/json").code(503).send({sent: false})
         }
 

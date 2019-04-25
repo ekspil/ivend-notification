@@ -39,7 +39,7 @@ function Routes({fastify, smsService, emailService, templatesService}) {
 
             let subject
 
-            switch (template.type) {
+            switch (template.id) {
                 case "REGISTRATION_EMAIL":
                     subject = `Благодарим за регистрацию`
                     break

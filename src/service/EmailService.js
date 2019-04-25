@@ -16,7 +16,7 @@ class EmailService {
 
     async sendEmail(recipent, subject, html) {
         const info = await this.transporter.sendMail({
-            from: `iVend <root@ivend.pro>`, // sender address
+            from: `iVend <no-reply@ivend.pro>`, // sender address
             to: recipent, // list of receivers
             subject, // Subject line
             html

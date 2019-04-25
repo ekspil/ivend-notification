@@ -13,7 +13,7 @@ class TemplatesService {
             "REGISTRATION_EMAIL": {
                 type: TemplateType.EMAIL,
                 replacements: ["token"],
-                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=email_confirmed">Reg</a></div>`
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=email_confirmed">Пройдите по ссылке чтобы подтвердить учётную запись</a></div>`
             }
         }
 

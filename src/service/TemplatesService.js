@@ -6,7 +6,7 @@ class TemplatesService {
     constructor() {
         this.templates = {
             "REGISTRATION_SMS": {
-                id: "REGISTRATION_EMAIL",
+                id: "REGISTRATION_SMS",
                 type: TemplateType.SMS,
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`

@@ -32,19 +32,10 @@ function Routes({fastify, smsService, emailService, templatesService}) {
 
         if (template.type === TemplateType.EMAIL) {
             const {email} = request.body
+            const {subject} = template
 
             if (!validationUtils.validateEmail(email)) {
                 throw new ValidationError()
-            }
-
-            let subject
-
-            switch (template.id) {
-                case "REGISTRATION_EMAIL":
-                    subject = `Благодарим за регистрацию`
-                    break
-                default:
-                    subject = `Сообщение от iVend`
             }
 
             await emailService.sendEmail(email, subject, content)

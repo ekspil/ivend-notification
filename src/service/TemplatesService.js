@@ -16,21 +16,21 @@ class TemplatesService {
                 type: TemplateType.EMAIL,
                 subject: `Благодарим за регистрацию`,
                 replacements: ["token"],
-                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=email_confirmation">Пройдите по ссылке чтобы подтвердить учётную запись</a></div>`
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=CONFIRM_EMAIL">Пройдите по ссылке чтобы подтвердить учётную запись</a></div>`
             },
             "CHANGE_EMAIL": {
                 id: "CHANGE_EMAIL",
                 type: TemplateType.EMAIL,
                 subject: `Смена email`,
                 replacements: ["token"],
-                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=change_email_confirmation">Пройдите по ссылке чтобы подтвердить смену email</a></div>`
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=EDIT_EMAIL_CONFIRM">Пройдите по ссылке чтобы подтвердить смену email</a></div>`
             },
             "CHANGE_PASSWORD": {
                 id: "CHANGE_PASSWORD",
                 type: TemplateType.EMAIL,
                 subject: `Смена пароля`,
                 replacements: ["token"],
-                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&from=change_password_confirmation">Пройдите по ссылке чтобы подтвердить смену пароля</a></div>`
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=EDIT_PASSWORD_CONFIRM">Пройдите по ссылке чтобы подтвердить смену пароля</a></div>`
             }
         }
 

@@ -1,29 +1,29 @@
 const nodemailer = require("nodemailer")
+const logger = require("../utils/logger")
 
 class EmailService {
 
-
     constructor() {
-        this.emailTransport = nodemailer.createTransport({
+        this.transporter = nodemailer.createTransport({
+            secure: false,
+            tls: {rejectUnauthorized: false},
             host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT,
-            secure: false
+            port: Number(process.env.SMTP_PORT),
         })
 
         this.sendEmail = this.sendEmail.bind(this)
     }
 
-    async sendEmail(recipent, subject, text) {
+    async sendEmail(recipent, subject, html) {
+        const info = await this.transporter.sendMail({
+            from: `iVend <no-reply@ivend.pro>`, // sender address
+            to: recipent, // list of receivers
+            subject, // Subject line
+            html
+        })
 
-        const mailOptions = {
-            from: "ivend.notifier@gmail.com", // sender address
-            to: recipent,
-            subject: subject,
-            html: `<p>${text}</p>`
-        }
 
-        return await this.emailTransport.sendMail(mailOptions)
-
+        logger.info(info)
     }
 
 }

@@ -12,15 +12,15 @@ const logger = require("./utils/logger")
 const fastify = require("fastify")({
 })
 
-const emailService = new EmailService({})
 const smsService = new SmsService({})
+const emailService = new EmailService({})
 const templatesService = new TemplatesService({})
 
 Routes({fastify, emailService, smsService, templatesService})
 
 fastify.register(require("fastify-healthcheck"))
 
-fastify.listen(4500, (err) => {
+fastify.listen(4500, "0.0.0.0", (err) => {
     logger.info("Server started on port 4500")
     if (err) throw err
 })

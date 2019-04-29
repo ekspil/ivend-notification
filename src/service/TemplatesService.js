@@ -5,10 +5,32 @@ const ValidationError = require("../errors/ValidationError")
 class TemplatesService {
     constructor() {
         this.templates = {
-            1: {
+            "REGISTRATION_SMS": {
+                id: "REGISTRATION_SMS",
                 type: TemplateType.SMS,
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`
+            },
+            "REGISTRATION_EMAIL": {
+                id: "REGISTRATION_EMAIL",
+                type: TemplateType.EMAIL,
+                subject: `Благодарим за регистрацию`,
+                replacements: ["token"],
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=CONFIRM_EMAIL">Пройдите по ссылке чтобы подтвердить учётную запись</a></div>`
+            },
+            "CHANGE_EMAIL": {
+                id: "CHANGE_EMAIL",
+                type: TemplateType.EMAIL,
+                subject: `Смена email`,
+                replacements: ["token"],
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=EDIT_EMAIL_CONFIRM">Пройдите по ссылке чтобы подтвердить смену email</a></div>`
+            },
+            "CHANGE_PASSWORD": {
+                id: "CHANGE_PASSWORD",
+                type: TemplateType.EMAIL,
+                subject: `Смена пароля`,
+                replacements: ["token"],
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/home?token=${replacements.token}&action_type=EDIT_PASSWORD_CONFIRM">Пройдите по ссылке чтобы подтвердить смену пароля</a></div>`
             }
         }
 

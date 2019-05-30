@@ -66,7 +66,7 @@ function Routes({fastify, smsService, emailService, templatesService}) {
         logger.error(error)
         logger.error(`RequestBody: ${JSON.stringify(request.body)}`)
         logger.error(error.stack)
-        reply.type("application/json").code(500).send()
+        reply.type("application/json").code(500).send({sent: false})
     })
 
     fastify.post("/api/v1/template/:templateId", sendTemplate)

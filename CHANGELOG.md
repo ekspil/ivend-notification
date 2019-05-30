@@ -5,3 +5,7 @@
 # 1.0.1 - Templates
 
 * Added templates support
+
+# 1.0.2 - Templates
+
+* Changed page in confirmation template url (front url)

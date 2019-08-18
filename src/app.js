@@ -7,7 +7,7 @@ const SmsService = require("./service/SmsService")
 const TemplatesService = require("./service/TemplatesService")
 
 const Routes = require("./routes")
-const logger = require("./utils/logger")
+const logger = require("my-custom-logger")
 
 const fastify = require("fastify")({
 })

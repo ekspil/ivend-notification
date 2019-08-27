@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer")
-const logger = require("../utils/logger")
+const logger = require("my-custom-logger")
 
 class EmailService {
 

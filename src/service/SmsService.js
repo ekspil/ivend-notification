@@ -1,5 +1,5 @@
 const fetch = require("node-fetch")
-const logger = require("../utils/logger")
+const logger = require("my-custom-logger")
 const MegafonAuthError = require("../errors/MegafonAuthError")
 const MegafonUnknownError = require("../errors/MegafonUnknownError")
 

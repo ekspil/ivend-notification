@@ -9,3 +9,7 @@
 # 1.0.2 - Templates
 
 * Changed page in confirmation template url (front url)
+
+# 1.0.3 - Templates
+
+* Added centralized logging

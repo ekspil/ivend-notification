@@ -1,5 +1,5 @@
 const validationUtils = require("../utils/validationUtils")
-const logger = require("../utils/logger")
+const logger = require("my-custom-logger")
 const ValidationError = require("../errors/ValidationError")
 const TemplateType = require("../enum/TemplateType")
 const TemplateNotFound = require("../errors/TemplateNotFound")

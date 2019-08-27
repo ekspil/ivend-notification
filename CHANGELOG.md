@@ -19,3 +19,7 @@
 * Bumped logger to 1.0.2
 * Added SERVICE_NAME
 * Added some more logging
+
+# 1.0.5 - Release
+
+* Fixed .env stuff

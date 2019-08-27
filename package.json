@@ -1,6 +1,6 @@
 {
   "name": "ivend-notification",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "ajv": "^6.10.0",
+    "dotenv": "^8.1.0",
     "fastify": "^2.0.0-rc.6",
     "fastify-healthcheck": "^2.0.0",
     "joi": "^14.3.1",

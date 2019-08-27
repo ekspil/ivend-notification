@@ -50,6 +50,8 @@ class TemplatesService {
             throw new TemplateNotFound()
         }
 
+        logger.debug(`render_template ${templateId} ${data}`)
+
         if (!template.replacements.every(replacement => Object.keys(data).indexOf(replacement) !== -1)) {
             throw new ValidationError()
         }

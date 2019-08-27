@@ -1,6 +1,7 @@
 const TemplateType = require("../enum/TemplateType")
 const TemplateNotFound = require("../errors/TemplateNotFound")
 const ValidationError = require("../errors/ValidationError")
+const logger = require("my-custom-logger")
 
 class TemplatesService {
     constructor() {
@@ -49,6 +50,8 @@ class TemplatesService {
         if (!template) {
             throw new TemplateNotFound()
         }
+
+        logger.debug(`render_template ${templateId} ${data}`)
 
         if (!template.replacements.every(replacement => Object.keys(data).indexOf(replacement) !== -1)) {
             throw new ValidationError()

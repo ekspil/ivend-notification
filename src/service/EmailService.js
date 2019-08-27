@@ -15,6 +15,7 @@ class EmailService {
     }
 
     async sendEmail(recipent, subject, html) {
+        logger.info(`Sending ${subject} to ${recipent}`)
         const info = await this.transporter.sendMail({
             from: `iVend <no-reply@ivend.pro>`, // sender address
             to: recipent, // list of receivers
@@ -23,7 +24,7 @@ class EmailService {
         })
 
 
-        logger.info(info)
+        logger.debug("send_mail_info: " + info)
     }
 
 }

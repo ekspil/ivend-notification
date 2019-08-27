@@ -1,6 +1,7 @@
 const TemplateType = require("../enum/TemplateType")
 const TemplateNotFound = require("../errors/TemplateNotFound")
 const ValidationError = require("../errors/ValidationError")
+const logger = require("my-custom-logger")
 
 class TemplatesService {
     constructor() {

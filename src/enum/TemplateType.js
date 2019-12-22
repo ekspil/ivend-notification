@@ -1,4 +1,5 @@
 module.exports = {
     EMAIL: "EMAIL",
-    SMS: "SMS"
+    SMS: "SMS",
+    TELEGRAM: "TELEGRAM"
 }

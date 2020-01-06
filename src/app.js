@@ -11,16 +11,7 @@ const TemplatesService = require("./service/TemplatesService")
 const Telegraf = require("telegraf")
 
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
-const knex = require("knex")({
-    client: "pg",
-    connection: {
-        host: process.env.POSTGRES_HOST,
-        user: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
-        ssl: true
-    }
-})
+
 
 const Routes = require("./routes")
 const logger = require("my-custom-logger")
@@ -31,7 +22,7 @@ const fastify = require("fastify")({
 const smsService = new SmsService({})
 const emailService = new EmailService({})
 const templatesService = new TemplatesService({})
-const telegramService = new TelegramService({knex, bot})
+const telegramService = new TelegramService({bot})
 
 Routes({fastify, emailService, smsService, templatesService, telegramService})
 

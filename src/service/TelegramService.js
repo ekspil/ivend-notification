@@ -1,14 +1,29 @@
+const {GraphQLClient} = require("graphql-request")
+const client = new GraphQLClient(process.env.GRAPHQL_API_URL, {
+    headers: {
+        Authorization: process.env.AUTH_HEADER_STRING
+    }
+})
 
 class TelegramService {
 
-    constructor({knex, bot}){
+    constructor({bot}){
         bot.start(async (ctx) => {
+            const query = `
+        mutation($input: NotificationSettingTelegramChat!) {
+          insertTelegramToNotificationSetting(input: $input) 
+        }
+        `
 
-            const [notification] = await knex("notification_settings")
-                .select("id", "type", "email", "sms", "telegram", "telegramChat")
-                .where({
-                    telegram: ctx.update.message.chat.username
-                })
+            const variables = {
+                input: {
+                    telegram: ctx.update.message.chat.username,
+                    telegramChat: ctx.update.message.chat.id,
+                }
+            }
+
+            const notification = await client.request(query, variables)
+
             if(!notification){
                 ctx.reply(`
                 
@@ -20,14 +35,6 @@ IVEND:
 Дополнительная справка /help
                 `)
             }else {
-                await knex("notification_settings")
-                    .update({
-                        telegramChat: ctx.update.message.chat.id,
-                        updated_at: new Date()
-                    })
-                    .where({
-                        telegram: ctx.update.message.chat.username
-                    })
                 ctx.reply(`
 IVEND:
 Система нотификации подключена!
@@ -43,7 +50,8 @@ IVEND:
 IVEND HELP:
 Ваш логин: ${ctx.update.message.chat.username}
 Идентификатор чата: ${ctx.update.message.chat.id}
-Для получения нотификации по событиям, введите логин в соответсвующие поля в личном кабинете.
+Для получения нотификации по событиям, введите логин в соответсвующие поля в личном кабинете. 
+Если логина нет, его необходимо создать в натсройках профиля.
             
 Различные события можно отправлять на различные Телеграм аккануты, для этого за каждым событием можно закрепить отдельный логин.
             
@@ -51,8 +59,6 @@ IVEND HELP:
         `))
 
         bot.launch()
-
-        this.knex = knex
         this.bot = bot
         this.sendMsg = this.sendMsg.bind(this)
 

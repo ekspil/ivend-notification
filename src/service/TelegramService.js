@@ -18,7 +18,7 @@ class TelegramService {
             const variables = {
                 input: {
                     telegram: ctx.update.message.chat.username,
-                    telegramChat: ctx.update.message.chat.id,
+                    telegramChat: String(ctx.update.message.chat.id),
                 }
             }
 

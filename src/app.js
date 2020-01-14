@@ -1,8 +1,8 @@
 require("dotenv").config()
 
-// if (!process.env.MEGAFON_LOGIN || !process.env.MEGAFON_PASSWORD) {
-//     throw new Error("MEGAFON_LOGIN or MEGAFON_PASS env is not set")
-// }
+if (!process.env.MEGAFON_LOGIN || !process.env.MEGAFON_PASSWORD) {
+    throw new Error("MEGAFON_LOGIN or MEGAFON_PASS env is not set")
+}
 
 const EmailService = require("./service/EmailService")
 const SmsService = require("./service/SmsService")

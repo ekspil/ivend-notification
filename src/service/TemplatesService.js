@@ -12,6 +12,18 @@ class TemplatesService {
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`
             },
+            "TELEGRAM_MSG": {
+                id: "TELEGRAM_MSG",
+                type: TemplateType.TELEGRAM,
+                replacements: ["msg"],
+                render: (replacements) => `IVEND NOTIFICATION: ${replacements.msg}`
+            },
+            "EMAIL_MSG": {
+                id: "EMAIL_MSG",
+                type: TemplateType.EMAIL,
+                replacements: ["msg"],
+                render: (replacements) => `<div>IVEND NOTIFICATION: ${replacements.msg}</div> `
+            },
             "REGISTRATION_EMAIL": {
                 id: "REGISTRATION_EMAIL",
                 type: TemplateType.EMAIL,

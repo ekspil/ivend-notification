@@ -5,7 +5,7 @@ const TemplateType = require("../enum/TemplateType")
 const TemplateNotFound = require("../errors/TemplateNotFound")
 const MegafonAuthError = require("../errors/MegafonAuthError")
 
-function Routes({fastify, smsService, emailService, templatesService}) {
+function Routes({fastify, smsService, emailService, templatesService, telegramService}) {
 
     const sendTemplate = async (request, reply) => {
         const {templateId} = request.params
@@ -26,6 +26,14 @@ function Routes({fastify, smsService, emailService, templatesService}) {
             }
 
             await smsService.sendSms(phone, content)
+
+            return reply.type("application/json").code(200).send({sent: true})
+        }
+
+        if (template.type === TemplateType.TELEGRAM) {
+            const {chat} = request.body
+
+            await telegramService.sendMsg(chat, content)
 
             return reply.type("application/json").code(200).send({sent: true})
         }

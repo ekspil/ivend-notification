@@ -23,3 +23,7 @@
 # 1.0.5 - Release
 
 * Fixed .env stuff
+
+# 1.0.6 - Release
+
+* Added telegram notifications

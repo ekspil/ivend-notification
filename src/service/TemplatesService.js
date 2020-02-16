@@ -44,7 +44,14 @@ class TemplatesService {
                 subject: `Смена пароля`,
                 replacements: ["token"],
                 render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/confirm?token=${replacements.token}&action_type=EDIT_PASSWORD_CONFIRM">Пройдите по ссылке чтобы подтвердить смену пароля</a></div>`
-            }
+            },
+            "REMEMBER_PASSWORD": {
+                id: "REMEMBER_PASSWORD",
+                type: TemplateType.EMAIL,
+                subject: `Восстановление пароля`,
+                replacements: ["token"],
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/NewPassword?token=${replacements.token}">Пройдите по ссылке чтобы восстановить пароль</a></div>`
+            },
         }
 
         this.getTemplateById = this.getTemplateById.bind(this)

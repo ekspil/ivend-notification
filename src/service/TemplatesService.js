@@ -50,7 +50,7 @@ class TemplatesService {
                 type: TemplateType.EMAIL,
                 subject: `Восстановление пароля`,
                 replacements: ["token"],
-                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/NewPassword?token=${replacements.token}">Пройдите по ссылке чтобы восстановить пароль</a></div>`
+                render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/NewPassword?token=${replacements.token}">Пройдите по ссылке чтобы указать новый пароль</a></div>`
             },
         }
 

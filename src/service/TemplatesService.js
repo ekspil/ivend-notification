@@ -56,8 +56,8 @@ class TemplatesService {
                 id: "SEND_EMAIL",
                 type: TemplateType.EMAIL,
                 subject: `Вопрос в техподдержку`,
-                replacements: ["input"],
-                render: (replacements) => `<div><h2>${replacements.input.title}</h2><p>${replacements.input.text}</p></div>`
+                replacements: ["input", "user"],
+                render: (replacements) => `<div><h2>${replacements.input.title}</h2><p>${replacements.input.text}</p><p><a href="mailto:${replacements.user.email}">Ответить пользователю на ${replacements.user.email}</a></p></div>`
             },
         }
 

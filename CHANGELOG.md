@@ -30,4 +30,8 @@
 
 # 1.0.7 - Release
 
+* Added new email massage
+
+# 1.0.7 - Release
+
 * Added any email sending

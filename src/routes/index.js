@@ -39,12 +39,14 @@ function Routes({fastify, smsService, emailService, templatesService, telegramSe
         }
 
         if (template.type === TemplateType.EMAIL) {
-            const {email} = request.body
-            const {subject} = template
+            const {email, input} = request.body
+            let {subject} = template
 
             if (!validationUtils.validateEmail(email)) {
                 throw new ValidationError()
             }
+
+            if(input && input.title && input.category) subject = "IVEND TP: " + input.category.toUpperCase() + " // " + input.title
 
             await emailService.sendEmail(email, subject, content)
 

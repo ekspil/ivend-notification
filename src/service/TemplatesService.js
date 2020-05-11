@@ -52,6 +52,13 @@ class TemplatesService {
                 replacements: ["token"],
                 render: (replacements) => `<div><a href="${process.env.FRONTEND_URL}/NewPassword?token=${replacements.token}">Пройдите по ссылке чтобы восстановить пароль</a></div>`
             },
+            "SEND_EMAIL": {
+                id: "SEND_EMAIL",
+                type: TemplateType.EMAIL,
+                subject: `Вопрос в техподдержку`,
+                replacements: ["input"],
+                render: (replacements) => `<div><h2>${replacements.input.title}</h2><p>${replacements.input.text}</p></div>`
+            },
         }
 
         this.getTemplateById = this.getTemplateById.bind(this)

@@ -27,3 +27,7 @@
 # 1.0.6 - Release
 
 * Added telegram notifications
+
+# 1.0.7 - Release
+
+* Added any email sending

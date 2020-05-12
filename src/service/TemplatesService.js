@@ -57,7 +57,7 @@ class TemplatesService {
                 type: TemplateType.EMAIL,
                 subject: `Вопрос в техподдержку`,
                 replacements: ["input", "user", "legalInfo"],
-                render: (replacements) => `<div><h2>${replacements.input.title}</h2><h3>Обращение от ${replacements.legalInfo.companyName}</h3><p>${replacements.input.text}</p><p><a href="mailto:${replacements.user.email}">Ответить пользователю на ${replacements.user.email}</a></p></div>`
+                render: (replacements) => `<div><h2>${replacements.input.title}</h2><h3>Обращение от ${replacements.legalInfo.companyName} (телефон: +7${replacements.user.phone})</h3><p>${replacements.input.text}</p><p><a href="mailto:${replacements.user.email}">Ответить пользователю на ${replacements.user.email}</a></p></div>`
             },
         }
 

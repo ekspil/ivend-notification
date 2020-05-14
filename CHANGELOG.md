@@ -35,3 +35,7 @@
 # 1.0.8 - Release
 
 * Added any email sending
+
+# 1.0.9 - Release
+
+* Fix email sending

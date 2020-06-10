@@ -5,10 +5,14 @@ class EmailService {
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            secure: false,
+            secure: true,
             tls: {rejectUnauthorized: false},
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT),
+            auth: {
+                user: process.env.SMTP_USER, // generated ethereal user
+                pass: process.env.SMTP_PASS, // generated ethereal password
+            }
         })
 
         this.sendEmail = this.sendEmail.bind(this)

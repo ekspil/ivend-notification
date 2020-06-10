@@ -39,3 +39,7 @@
 # 1.0.9 - Release
 
 * Fix email sending
+
+# 1.0.10 - Release
+
+* Fix email sending

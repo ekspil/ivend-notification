@@ -60,6 +60,13 @@ class TemplatesService {
                 replacements: ["input", "user", "legalInfo"],
                 render: (replacements) => `<div><h2>${replacements.input.title}</h2><h3>Обращение от ${replacements.legalInfo.companyName} (телефон: +7${replacements.user.phone})</h3><p>${replacements.input.text}</p><p><a href="mailto:${replacements.user.email}">Ответить пользователю на ${replacements.user.email}</a></p></div>`
             },
+            "SEND_ORDER": {
+                id: "SEND_ORDER",
+                type: TemplateType.EMAIL,
+                subject: `Сформирован новый счет`,
+                replacements: ["input", "user", "legalInfo"],
+                render: (replacements) => `<div><h2>${replacements.legalInfo.companyName} ИНН: ${replacements.legalInfo.inn}</h2><h3>Сформирован счет на {replacements.input.amount} руб. </h3><p>Ссылка на счет: <a href="${replacements.input.url}">${replacements.input.url}</a></p></div>`
+            },
         }
 
         this.getTemplateById = this.getTemplateById.bind(this)
@@ -88,5 +95,6 @@ class TemplatesService {
     }
 
 }
+
 
 module.exports = TemplatesService

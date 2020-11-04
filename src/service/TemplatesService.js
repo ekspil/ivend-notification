@@ -65,7 +65,7 @@ class TemplatesService {
                 type: TemplateType.EMAIL,
                 subject: `Сформирован новый счет`,
                 replacements: ["input", "user", "legalInfo"],
-                render: (replacements) => `<div><h2>${replacements.legalInfo.companyName} ИНН: ${replacements.legalInfo.inn}</h2><h3>Сформирован счет на {replacements.input.amount} руб. </h3><p>Ссылка на счет: <a href="${replacements.input.url}">${replacements.input.url}</a></p></div>`
+                render: (replacements) => `<div><h2>${replacements.legalInfo.companyName} ИНН: ${replacements.legalInfo.inn}</h2><h3>Сформирован счет на ${replacements.input.amount} руб. </h3><p>Ссылка на счет: <a href="${replacements.input.url}">${replacements.input.url}</a></p></div>`
             },
         }
 

@@ -48,3 +48,7 @@
 # 1.0.11 - Release
 
 * Add email sending
+
+# 1.0.12 - Hotfix
+
+* Fix logs

@@ -26,9 +26,7 @@ class EmailService {
             subject, // Subject line
             html
         })
-
-
-        logger.debug("send_mail_info: " + info)
+        logger.debug(`Sending ${subject} to ${recipent} : ${JSON.stringify(info)}`)
     }
 
 }

@@ -21,7 +21,7 @@ class TemplatesService {
             "EMAIL_MSG": {
                 id: "EMAIL_MSG",
                 type: TemplateType.EMAIL,
-                subject: "Информация IVEND.PRO",
+                subject: "Уведомление iVend bot",
                 replacements: ["msg"],
                 render: (replacements) => `<div>IVEND NOTIFICATION: ${replacements.msg}</div> `
             },

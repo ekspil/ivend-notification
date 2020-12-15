@@ -52,3 +52,7 @@
 # 1.0.12 - Hotfix
 
 * Fix logs
+
+# 1.0.13 - Hotfix
+
+* Fix header

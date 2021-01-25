@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: notification
-        image: registry.gitlab.com/pshenmic/ivend/notification:1.0.13
+        image: registry.gitlab.com/pshenmic/ivend/notification:1.0.14
         ports:
           - containerPort: 4500
         readinessProbe:

@@ -12,6 +12,12 @@ class TemplatesService {
                 replacements: ["code"],
                 render: (replacements) => `Проверочный код: ${replacements.code}`
             },
+            "SMS_NEWS": {
+                id: "REGISTRATION_SMS",
+                type: TemplateType.SMS,
+                replacements: ["text"],
+                render: (replacements) => `Новости Ivend: ${replacements.text}`
+            },
             "TELEGRAM_MSG": {
                 id: "TELEGRAM_MSG",
                 type: TemplateType.TELEGRAM,
@@ -24,6 +30,13 @@ class TemplatesService {
                 subject: "Уведомление iVend bot",
                 replacements: ["msg"],
                 render: (replacements) => `<div>IVEND NOTIFICATION: ${replacements.msg}</div> `
+            },
+            "TEXT_EMAIL": {
+                id: "TEXT_EMAIL",
+                type: TemplateType.EMAIL,
+                subject: "Новости компании iVend",
+                replacements: ["text"],
+                render: (replacements) => `<div>Новости компании: <p>${replacements.text}</p></div> `
             },
             "REGISTRATION_EMAIL": {
                 id: "REGISTRATION_EMAIL",

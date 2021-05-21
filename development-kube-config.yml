@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: notification
-        image: registry.gitlab.com/pshenmic/ivend/notification:$CIRCLE_SHA1
+        image: cr.yandex/crpfb8t478v3of681kce/notification:$CIRCLE_SHA1
         ports:
           - containerPort: 4500
         readinessProbe:

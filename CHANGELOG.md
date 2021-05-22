@@ -65,3 +65,7 @@
 # 1.0.15 - Hotfix
 
 * Fix
+
+# 1.0.16 - Release
+
+* Move to yandex

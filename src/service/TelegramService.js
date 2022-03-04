@@ -7,7 +7,7 @@ const client = new GraphQLClient(process.env.GRAPHQL_API_URL, {
 
 class TelegramService {
 
-    constructor({bot}){
+    constructor({bot, logger}){
         bot.start(async (ctx) => {
             const query = `
         mutation($input: NotificationSettingTelegramChat!) {
@@ -21,11 +21,12 @@ class TelegramService {
                     telegramChat: String(ctx.update.message.chat.id),
                 }
             }
+            
+            try{
 
-            const notification = await client.request(query, variables)
-
-            if(!notification){
-                ctx.reply(`
+                const notification = await client.request(query, variables)
+                if(!notification){
+                    await ctx.reply(`
                 
 IVEND:
 Система нотификации НЕ подключена!
@@ -34,8 +35,8 @@ IVEND:
                 
 Дополнительная справка /help
                 `)
-            }else {
-                ctx.reply(`
+                }else {
+                    await ctx.reply(`
 IVEND:
 Система нотификации подключена!
 Ваш логин: ${ctx.update.message.chat.username}
@@ -43,7 +44,18 @@ IVEND:
                             
 Дополнительная справка /help
                 `)
+                }     
             }
+            catch(e){
+                await ctx.reply(`
+                
+IVEND:
+Ошибка работы бота! Бот потерял связь с главным сервером IVEND!
+Сообщите об ошибке администратору системы!
+
+                `)
+            }
+
 
         })
         bot.help((ctx) => ctx.reply(`
@@ -59,8 +71,16 @@ IVEND HELP:
         `))
 
         bot.launch()
-        this.bot = bot
-        this.sendMsg = this.sendMsg.bind(this)
+            .then(()=>{
+
+                this.bot = bot
+                this.sendMsg = this.sendMsg.bind(this)
+                logger.info(`telegram_service_success servise started`)
+            })
+            .catch(err => {
+                logger.info(`telegram_service_error ${err.message}`)
+            })
+
 
     }
 

@@ -69,3 +69,7 @@
 # 1.0.16 - Release
 
 * Move to yandex
+
+# 1.0.17 - Release
+
+* Move to yandex

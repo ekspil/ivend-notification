@@ -22,7 +22,7 @@ const fastify = require("fastify")({
 const smsService = new SmsService({})
 const emailService = new EmailService({})
 const templatesService = new TemplatesService({})
-const telegramService = new TelegramService({bot})
+const telegramService = new TelegramService({bot, logger})
 
 Routes({fastify, emailService, smsService, templatesService, telegramService})
 

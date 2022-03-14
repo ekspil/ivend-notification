@@ -2,7 +2,7 @@ const validation = require("./validation")
 const {validateSendEmailRequest} = validation
 
 function validatePhoneNumber(phone) {
-    return typeof phone === "string" && new RegExp(/^9(\d){9,9}$/).test(phone)
+    return typeof phone === "string" &&  new RegExp(/^[3,7,9](\d){8,12}$/).test(phone)
 }
 
 function validateEmail(email) {

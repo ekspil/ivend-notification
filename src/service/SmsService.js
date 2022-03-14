@@ -11,7 +11,7 @@ class SmsService {
     async sendSms(recipent, text) {
         const body = JSON.stringify({
             from: "iVend",
-            to: Number("7" + recipent),
+            to: Number(recipent),
             message: text
         })
 

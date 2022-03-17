@@ -73,3 +73,7 @@
 # 1.0.17 - Release
 
 * Move to yandex
+
+# 1.0.18 - Release
+
+* fix sms code

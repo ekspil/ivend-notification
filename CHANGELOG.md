@@ -77,3 +77,7 @@
 # 1.0.18 - Release
 
 * fix sms code
+
+# 1.0.19 - Release
+
+* fix telegram

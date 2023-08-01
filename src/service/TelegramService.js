@@ -16,9 +16,19 @@ class TelegramService {
         this.bot = bot
 
         bot.start(async (ctx) => {
-            await this.sendGQLRequest(ctx)
+
+            await ctx.reply(this.texts(6, ctx))
+
+            //await this.sendGQLRequest(ctx)
         })
         bot.help((ctx) => ctx.reply(this.texts(4, ctx)))
+
+        bot.on("message", async (ctx) => {
+            await this.sendGQLRequest(ctx)
+
+        })
+        
+        
         bot.launch()
             .then(()=>{
                 logger.info(`telegram_service_success service_started`)
@@ -59,7 +69,7 @@ class TelegramService {
 
         const variables = {
             input: {
-                telegram: ctx.update.message.chat.username,
+                hash: ctx.update.message.text,
                 telegramChat: String(ctx.update.message.chat.id),
             }
         }
@@ -67,7 +77,7 @@ class TelegramService {
         try{
 
             const notification = await client.request(query, variables)
-            if(!notification){
+            if(!notification.insertTelegramToNotificationSetting){
                 await ctx.reply(this.texts(1, ctx))
             }else {
                 await ctx.reply(this.texts(2, ctx))
@@ -86,8 +96,7 @@ class TelegramService {
                 
 IVEND:
 Система нотификации НЕ подключена!
-Ваш логин: ${ctx.update.message.chat.username}
-Сперва введите логин в соответсвующие поля в личном кабинете.
+Вероятно вы совершили ошибку в написании уникального кода :(
                 
 Дополнительная справка /help
                 `
@@ -95,8 +104,7 @@ IVEND:
                 return `
 IVEND:
 Система нотификации подключена!
-Ваш логин: ${ctx.update.message.chat.username}
-Для получения нотификации по событиям, введите логин в соответсвующие поля в личном кабинете.
+Для получения нотификации по событиям, отметьте соответсвующие события галочками.
                             
 Дополнительная справка /help
                 `
@@ -113,13 +121,19 @@ IVEND:
 IVEND HELP:
 Ваш логин: ${ctx.update.message.chat.username}
 Идентификатор чата: ${ctx.update.message.chat.id}
-Для получения нотификации по событиям, введите логин в соответсвующие поля в личном кабинете. 
-Если логина нет, его необходимо создать в натсройках профиля.
+
+Для получения нотификации по событиям, напишите в этот чат персоныльный код, который находится в настройках уведомлений в личном кабинете. 
+
+Обращаем внимание, что вводить код необходимо с учетом регистра(большие и маленькие буквы вводятся так как написано), а так же со всеми символами, включая знаки '=' на конце.
             
-Различные события можно отправлять на различные Телеграм аккануты, для этого за каждым событием можно закрепить отдельный логин.
-            
-Чтобы аккаунт получал уведомления, необходимо именно с этого аккаунта найти этот бот @ivend_bot и ввести /start
         `
+            case 6:
+                return `
+IVEND:
+Добро пожаловать в систему нотификации IVEND!
+Для подключения, введите персональный код, который находится в настройках уведомлений личного кабинета.
+                            
+Дополнительная справка /help`
             default:
                 return ``
         }

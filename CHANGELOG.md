@@ -81,3 +81,7 @@
 # 1.0.19 - Release
 
 * fix telegram
+
+# 1.0.20 - Release
+
+* fix telegram
